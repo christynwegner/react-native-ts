@@ -1,5 +1,10 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import {
+    Button,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native';
 
 const styles = StyleSheet.create({
     button: {
@@ -11,11 +16,19 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around'
+    },
+    navigationHeader: {
+        backgroundColor: '#cc2222'
+    },
+    navigationHeaderTitle: {
+        color: 'white'
     }
 });
 
 class Home extends React.Component {
-    render() {
+    public render() {
+        const { navigate } = this.props.navigation;
+
         return (
             <View>
                 <Text style={{ justifyContent: 'center' }}>Home Screen</Text>
@@ -23,21 +36,20 @@ class Home extends React.Component {
                     <View style={styles.button}>
                         <Button
                             title="Login"
-                            onPress={() =>  this.props.navigation.navigate(
-                                'Login',
-                                {
-                                    username: 'happyfeet',
-                                    password: 'insecure password'
-                                })} />
+                            onPress={() =>  navigate('Login')} />
                     </View>
                     <View style={styles.button}>
                         <Button
                             title="Register"
-                            onPress={() =>  this.props.navigation.navigate('Register')} />
+                            onPress={() =>  navigate('Register')} />
                     </View>
                 </View>
             </View>
         );
+    }
+
+    static navigationOptions = {
+        title: 'Home'
     }
 }
 
